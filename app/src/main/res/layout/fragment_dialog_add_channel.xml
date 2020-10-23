@@ -16,7 +16,7 @@
         android:textSize="18sp" />
 
     <EditText
-        android:id="@+id/input_text"
+        android:id="@+id/input_channel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
         <requestFocus />

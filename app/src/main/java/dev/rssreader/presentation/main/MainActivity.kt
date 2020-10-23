@@ -1,20 +1,28 @@
-package dev.rssreader
+package dev.rssreader.presentation.main
 
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.lifecycle.ViewModelProvider
+import dev.rssreader.R
+import dev.rssreader.presentation.addchannel.AddChannelDialogFragment
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
+        viewModel = ViewModelProvider.NewInstanceFactory().create(MainActivityViewModel::class.java)
+
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
-            val addChannelDialog = AddChannelDialogFragment()
+            val addChannelDialog =
+                AddChannelDialogFragment()
             val manager = supportFragmentManager
             addChannelDialog.show(manager, "AddChannel")
         }
