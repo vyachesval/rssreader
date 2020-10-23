@@ -1,4 +1,4 @@
-package dev.rssreader.presentation.main
+package dev.rssreader.presentation.screen.main
 
 import androidx.lifecycle.ViewModel
 
