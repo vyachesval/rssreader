@@ -20,8 +20,8 @@
         android:id="@+id/input_rsschannel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:autofillHints=" "
-        android:hint="@string/enter_address"
+        android:autofillHints="@string/enter_address_hint"
+        android:hint="@string/enter_address_hint"
         android:inputType="text">
         <requestFocus />
     </EditText>

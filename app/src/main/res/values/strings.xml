@@ -14,4 +14,5 @@
     <string name="add_rsschannel_title">Добавление RSS канала</string>
     <string name="add">Добавить</string>
     <string name="enter_address">Введите адрес:</string>
+    <string name="enter_address_hint">rss канал</string>
 </resources>
