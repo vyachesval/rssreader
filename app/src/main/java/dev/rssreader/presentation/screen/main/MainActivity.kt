@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import butterknife.BindView
 import butterknife.ButterKnife
 import dev.rssreader.R
-import dev.rssreader.presentation.screen.addchannel.AddChannelDialogFragment
+import dev.rssreader.presentation.screen.addchannel.AddRssChannelDialogFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,9 +27,9 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider.NewInstanceFactory().create(MainActivityViewModel::class.java)
 
         fabView.setOnClickListener {
-            val addChannelDialog = AddChannelDialogFragment()
+            val addChannelDialog = AddRssChannelDialogFragment()
             val manager = supportFragmentManager
-            addChannelDialog.show(manager, "AddChannel")
+            addChannelDialog.show(manager, "AddRssChannel")
         }
     }
 

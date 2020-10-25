@@ -10,29 +10,29 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import dev.rssreader.R
 
-class AddChannelDialogFragment : DialogFragment() {
+class AddRssChannelDialogFragment : DialogFragment() {
 
     private val mTAG = this::class.java.simpleName
-    private lateinit var viewModel: AddChannelViewModel
+    private lateinit var viewModel: AddRssChannelViewModel
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        viewModel = ViewModelProvider.NewInstanceFactory().create(AddChannelViewModel::class.java)
+        viewModel = ViewModelProvider.NewInstanceFactory().create(AddRssChannelViewModel::class.java)
 
         return activity?.let {
-            var addChannelView = LayoutInflater.from(context).inflate(R.layout.fragment_dialog_add_channel, null)
-            val input_channel = addChannelView.findViewById<EditText>(R.id.input_channel)
+            val addRssChannelView = LayoutInflater.from(context).inflate(R.layout.fragment_dialog_add_rsschannel, null)
+            val input_rsschannel = addRssChannelView.findViewById<EditText>(R.id.input_rsschannel)
             val builder = AlertDialog.Builder(it)
-                .setTitle(R.string.add_channel_title)
+                .setTitle(R.string.add_rsschannel_title)
                 .setIcon(R.drawable.ic_action_name)
                 .setPositiveButton(R.string.add) { _, _ ->
-                    Log.d(mTAG, input_channel.text.toString())
+                    Log.d(mTAG, input_rsschannel.text.toString())
 
-                    viewModel.isCorrectChannel(input_channel.text.toString())
+                    viewModel.isCorrectRssChannel(input_rsschannel.text.toString())
                         .subscribe { it ->
                             Log.d(mTAG, "isCorrectChannel return " + it)
                         }
                 }
-            builder.setView(addChannelView)
+            builder.setView(addRssChannelView)
             builder.create()
         } ?: throw IllegalStateException("No activity")
     }

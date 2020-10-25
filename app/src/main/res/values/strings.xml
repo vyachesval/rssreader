@@ -11,7 +11,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="plus">+</string>
-    <string name="add_channel_title">Добавление канала</string>
+    <string name="add_rsschannel_title">Добавление RSS канала</string>
     <string name="add">Добавить</string>
     <string name="enter_address">Введите адрес:</string>
 </resources>

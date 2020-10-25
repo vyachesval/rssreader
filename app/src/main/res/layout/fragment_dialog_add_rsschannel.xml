@@ -2,14 +2,14 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
 
-    android:id="@+id/add_channel"
+    android:id="@+id/add_rsschannel"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="10dp" >
 
     <TextView
-        android:id="@+id/add_channel_text_view"
+        android:id="@+id/add_rsschannel_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/enter_address"
@@ -17,9 +17,12 @@
         android:textSize="18sp" />
 
     <EditText
-        android:id="@+id/input_channel"
+        android:id="@+id/input_rsschannel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:autofillHints=" "
+        android:hint="@string/enter_address"
+        android:inputType="text">
         <requestFocus />
     </EditText>
 

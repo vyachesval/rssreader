@@ -46,7 +46,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation "io.reactivex.rxjava2:rxjava:2.2.3"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.9"
     implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
 
     implementation 'com.github.stephanenicolas.toothpick:toothpick-runtime:3.1.0'
@@ -55,4 +55,8 @@ dependencies {
 
     implementation "com.jakewharton:butterknife:10.2.3"
     kapt "com.jakewharton:butterknife-compiler:10.2.3"
+
+    implementation "androidx.room:room-runtime:2.2.5"
+    annotationProcessor "androidx.room:room-compiler:2.2.5"
+    implementation "androidx.room:room-rxjava2:2.2.5"
 }
