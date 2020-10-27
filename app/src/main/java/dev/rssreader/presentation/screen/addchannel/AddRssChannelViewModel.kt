@@ -1,9 +1,10 @@
 package dev.rssreader.presentation.screen.addchannel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import dev.rssreader.domain.usecase.AddRssChannel
 import dev.rssreader.domain.usecase.CheckRssChannelAddressString
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class AddRssChannelViewModel @Inject constructor(private val addRssChannel: AddRssChannel) :
@@ -12,11 +13,11 @@ class AddRssChannelViewModel @Inject constructor(private val addRssChannel: AddR
     private val mTAG = this::class.java.simpleName
 
     fun addRssChannel(rsschannel: String) {
-
-            return CheckRssChannelAddressString.isCorrectRssChannelAddressString(rsschannel)
+        val disposables = CompositeDisposable()
+        CheckRssChannelAddressString.isCorrectRssChannelAddressString(rsschannel)
             .map { if(it) addRssChannel.addRssChannel(rsschannel) }
-            .subscribe { value -> Log.d(mTAG, "isCorrectRssChannelAddressString return $value")  }
-            .dispose()
-
+            .subscribeOn(Schedulers.io())
+            .subscribe()
+        disposables.dispose()
     }
 }

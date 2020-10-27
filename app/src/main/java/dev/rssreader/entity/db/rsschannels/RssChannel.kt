@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 class RssChannel {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var id: Long = 0
     var address: String? = null
 }

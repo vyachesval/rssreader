@@ -29,13 +29,13 @@ class AddRssChannelDialogFragment : DialogFragment() {
 
         return activity?.let {
             val addRssChannelView = LayoutInflater.from(context).inflate(R.layout.fragment_dialog_add_rsschannel, null)
-            val input_rsschannel = addRssChannelView.findViewById<EditText>(R.id.input_rsschannel)
+            val inputRsschannelView = addRssChannelView.findViewById<EditText>(R.id.input_rsschannel)
             val builder = AlertDialog.Builder(it)
                 .setTitle(R.string.add_rsschannel_title)
                 .setIcon(R.drawable.ic_action_name)
                 .setPositiveButton(R.string.add) { _, _ ->
-                    Log.d(mTAG, "onClick " + input_rsschannel.text.toString())
-                    viewModel.addRssChannel(input_rsschannel.text.toString())
+                    Log.d(mTAG, "onClick " + inputRsschannelView.text.toString())
+                    viewModel.addRssChannel(inputRsschannelView.text.toString())
                 }
             builder.setView(addRssChannelView)
             builder.create()
