@@ -9,14 +9,23 @@ import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import dev.rssreader.R
+import dev.rssreader.RssReaderApplication
+import dev.rssreader.di.ViewModelFactory
+import toothpick.Toothpick
+import javax.inject.Inject
 
 class AddRssChannelDialogFragment : DialogFragment() {
 
     private val mTAG = this::class.java.simpleName
     private lateinit var viewModel: AddRssChannelViewModel
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        viewModel = ViewModelProvider.NewInstanceFactory().create(AddRssChannelViewModel::class.java)
+
+        Toothpick.inject(this,  Toothpick.openScope(RssReaderApplication.instance))
+        viewModel = ViewModelProvider(this, viewModelFactory).get(AddRssChannelViewModel::class.java)
 
         return activity?.let {
             val addRssChannelView = LayoutInflater.from(context).inflate(R.layout.fragment_dialog_add_rsschannel, null)
@@ -25,12 +34,8 @@ class AddRssChannelDialogFragment : DialogFragment() {
                 .setTitle(R.string.add_rsschannel_title)
                 .setIcon(R.drawable.ic_action_name)
                 .setPositiveButton(R.string.add) { _, _ ->
-                    Log.d(mTAG, input_rsschannel.text.toString())
-
-                    viewModel.isCorrectRssChannel(input_rsschannel.text.toString())
-                        .subscribe { it ->
-                            Log.d(mTAG, "isCorrectChannel return " + it)
-                        }
+                    Log.d(mTAG, "onClick " + input_rsschannel.text.toString())
+                    viewModel.addRssChannel(input_rsschannel.text.toString())
                 }
             builder.setView(addRssChannelView)
             builder.create()
