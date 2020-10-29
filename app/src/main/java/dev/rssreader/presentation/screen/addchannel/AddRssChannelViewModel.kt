@@ -12,12 +12,23 @@ class AddRssChannelViewModel @Inject constructor(private val addRssChannel: AddR
 
     private val mTAG = this::class.java.simpleName
 
+    private val disposable: CompositeDisposable = CompositeDisposable()
+
     fun addRssChannel(rsschannel: String) {
-        val disposables = CompositeDisposable()
-        CheckRssChannelAddressString.isCorrectRssChannelAddressString(rsschannel)
-            .map { if(it) addRssChannel.addRssChannel(rsschannel) }
-            .subscribeOn(Schedulers.io())
+        disposable.add(
+            CheckRssChannelAddressString.isCorrectRssChannelAddressString(rsschannel)
+            .map {
+                if(it)
+                    addRssChannel.addRssChannel(rsschannel)
+                        .subscribeOn(Schedulers.io())
+                        .subscribe() }
             .subscribe()
-        disposables.dispose()
+        )
     }
+
+    fun dispose() {
+        disposable.clear()
+    }
+
+
 }

@@ -18,7 +18,6 @@ class AddRssChannelDialogFragment : DialogFragment() {
 
     private val mTAG = this::class.java.simpleName
     private lateinit var viewModel: AddRssChannelViewModel
-
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
@@ -40,5 +39,10 @@ class AddRssChannelDialogFragment : DialogFragment() {
             builder.setView(addRssChannelView)
             builder.create()
         } ?: throw IllegalStateException("No activity")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.dispose()
     }
 }
