@@ -13,12 +13,15 @@ abstract class RssChannelDao {
     @Query("SELECT * FROM rsschannel WHERE id = :id")
     abstract fun getById(id: Long): Maybe<RssChannel>
 
-    @Insert
+    @Query("select last_insert_rowid()")
+    abstract fun getLastId(): Maybe<Int>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     abstract fun insert(channel: RssChannel): Completable
 
     @Update
     abstract fun update(channel: RssChannel) : Completable
 
-    @Delete
-    abstract fun delete(channel: RssChannel) : Completable
+    @Query("DELETE FROM rsschannel WHERE id = :rsschannel_id")
+    abstract fun delete(rsschannel_id: Int) : Completable
 }

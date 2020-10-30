@@ -13,17 +13,18 @@ class LocalDataSource @Inject constructor(context: Context) {
         context,
         AppDatabase::class.java, "rssreader"
     ).build()
-    val mapper: RssChannelListMapper = RssChannelListMapper()
 
     fun insert(rsschannel: String) : Completable {
-        val rssChannelEntity = RssChannel()
-        rssChannelEntity.address = rsschannel
+        val rssChannelEntity = RssChannel(rsschannel)
         return db.rssChannelDao().insert(rssChannelEntity)
     }
 
-    fun rssChannelList(): Observable<List<String>> {
+    fun rssChannelList(): Observable<List<RssChannel>> {
         return db.rssChannelDao().getAll()
-            .map(mapper::mapToStringList)
+    }
+
+    fun delete(rsschannelId: Int): Completable {
+        return db.rssChannelDao().delete(rsschannelId)
     }
 
 }

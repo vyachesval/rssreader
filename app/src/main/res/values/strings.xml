@@ -15,4 +15,5 @@
     <string name="add">Добавить</string>
     <string name="enter_address">Введите адрес:</string>
     <string name="enter_address_hint">rss канал</string>
+    <string name="enter_address_error">Ошибка ввода адреса</string>
 </resources>

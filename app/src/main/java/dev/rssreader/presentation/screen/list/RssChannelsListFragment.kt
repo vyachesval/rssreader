@@ -48,12 +48,15 @@ class RssChannelsListFragment : Fragment() {
         val adapter = RssChannelListAdapter()
         rsschannelsList.adapter = adapter
 
-        val disposable = getRssChannelsList.getRssChannelsList()
+        val disposable =
+            getRssChannelsList.getRssChannelsList()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe{
+            .subscribe {
                 adapter.setList(it)
+                compositeDisposable.clear()
             }
+
         compositeDisposable.add(disposable)
 
         return view

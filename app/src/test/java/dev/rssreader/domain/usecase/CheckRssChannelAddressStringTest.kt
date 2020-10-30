@@ -7,8 +7,8 @@ class CheckRssChannelAddressStringTest {
 
     @Test
     fun isCorrectRssChannelAddressString() {
-        assertTrue(CheckRssChannelAddressString.isCorrectRssChannelAddressString("http://mail.ru").blockingGet())
-        assertTrue(CheckRssChannelAddressString.isCorrectRssChannelAddressString("https://mail.ru/rss").blockingGet())
-        assertFalse(CheckRssChannelAddressString.isCorrectRssChannelAddressString("https://mail .ru/rss").blockingGet())
+        assertTrue(CheckRssChannelAddressString.isCorrectRssChannelAddressString("http://mail.ru"))
+        assertTrue(CheckRssChannelAddressString.isCorrectRssChannelAddressString("https://mail.ru/rss"))
+        assertFalse(CheckRssChannelAddressString.isCorrectRssChannelAddressString("https://mail .ru/rss"))
     }
 }

@@ -1,11 +1,14 @@
 package dev.rssreader.entity.db.rsschannels
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity
-class RssChannel {
+@Entity(indices = arrayOf(Index(value = ["address"], unique = true) ))
+data class RssChannel (
     @PrimaryKey(autoGenerate = true)
-    var id: Long = 0
-    var address: String? = null
+    val id: Long,
+    val address: String
+) {
+    constructor(address: String) : this(0, address)
 }
