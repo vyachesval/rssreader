@@ -65,4 +65,7 @@ dependencies {
 
     implementation "org.immutables:gson:2.5.5"
     kapt "org.immutables:value:2.5.5"
+
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
 }

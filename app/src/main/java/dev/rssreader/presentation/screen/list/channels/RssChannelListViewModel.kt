@@ -1,10 +1,12 @@
-package dev.rssreader.presentation.screen.list
+package dev.rssreader.presentation.screen.list.channels
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dev.rssreader.RssReaderApplication
 import dev.rssreader.domain.entity.RssChannelData
 import dev.rssreader.domain.usecase.DelRssChannel
+import dev.rssreader.domain.usecase.GetRssChannelNews
 import dev.rssreader.domain.usecase.GetRssChannelsList
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -18,6 +20,8 @@ class RssChannelListViewModel @Inject constructor() : ViewModel() {
     lateinit var getRssChannelsList: GetRssChannelsList
     @Inject
     lateinit var delRssChannelsList: DelRssChannel
+    @Inject
+    lateinit var getRssChannelNews: GetRssChannelNews
 
     val list: MutableLiveData<List<RssChannelData>> by lazy {
         MutableLiveData<List<RssChannelData>>()
@@ -39,7 +43,13 @@ class RssChannelListViewModel @Inject constructor() : ViewModel() {
 
 
     fun onClick(rsschannel: RssChannelData) {
-
+        Log.d("iszx", "rsschannel opening " + rsschannel.address)
+        val disposable =
+            getRssChannelNews.getRssChannelNews(rsschannel.address)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe()
+        compositeDisposable.add(disposable)
     }
 
     fun onLongClick(rsschannel: RssChannelData) {

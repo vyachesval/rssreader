@@ -1,4 +1,4 @@
-package dev.rssreader.presentation.screen.list
+package dev.rssreader.presentation.screen.list.channels
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -16,6 +16,8 @@ import dev.rssreader.R
 import dev.rssreader.RssReaderApplication
 import dev.rssreader.di.ViewModelFactory
 import dev.rssreader.domain.entity.RssChannelData
+import dev.rssreader.presentation.screen.list.ItemClickListener
+import dev.rssreader.presentation.screen.list.RssChannelListAdapter
 import toothpick.Toothpick
 import javax.inject.Inject
 
@@ -39,7 +41,7 @@ class RssChannelsListFragment : Fragment() {
         ButterKnife.bind(this, view)
         rsschannelsList.layoutManager = LinearLayoutManager(view.context)
         val adapter = RssChannelListAdapter(
-            object: ItemClickListener<RssChannelData>() {
+            object: ItemClickListener<RssChannelData> {
                 override fun onClick(position: Int, item: RssChannelData) {
                     viewModel.onClick(item)
                 }

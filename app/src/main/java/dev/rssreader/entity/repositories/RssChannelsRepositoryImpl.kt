@@ -28,8 +28,4 @@ class RssChannelsRepositoryImpl @Inject constructor(dataSource: LocalDataSource)
         return localDataSource.rssChannelList()
             .map(mapper::mapToData)
     }
-
-    override fun getRssChannelId(rsschannelId: Int): Observable<RssChannelData> {
-        TODO("Not yet implemented")
-    }
 }

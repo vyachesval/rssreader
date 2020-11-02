@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="rsschannels_list_fragment_label">RSS channels list Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="rsschannel_news_list_fragment_label">RSS channel news list Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 

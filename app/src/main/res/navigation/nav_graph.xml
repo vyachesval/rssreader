@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/fragment_rsschannels_list"
-        android:name="dev.rssreader.presentation.screen.list.RssChannelsListFragment"
+        android:name="dev.rssreader.presentation.screen.list.channels.RssChannelsListFragment"
         android:label="@string/rsschannels_list_fragment_label"
         tools:layout="@layout/fragment_rsschannels_list">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_RssChannelsList_to_RssChannelNewsList"
+            app:destination="@id/fragment_rsschannel_news_list" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="dev.rssreader.presentation.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/fragment_rsschannel_news_list"
+        android:name="dev.rssreader.presentation.screen.list.news.RssChannelNewsListFragment"
+        android:label="@string/rsschannel_news_list_fragment_label"
+        tools:layout="@layout/fragment_rsschannel_news_list">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            android:id="@+id/action_RssChannelNewsList_to_RssChannelsList"
             app:destination="@id/fragment_rsschannels_list" />
     </fragment>
 </navigation>
