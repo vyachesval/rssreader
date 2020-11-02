@@ -32,7 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="?attr/colorPrimary" />
+        app:backgroundTint="?attr/colorPrimary"
+        android:contentDescription="@string/add_rsschannel_title" />
 
         <TextView
             android:layout_width="wrap_content"

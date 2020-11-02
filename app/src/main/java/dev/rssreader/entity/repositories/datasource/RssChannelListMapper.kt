@@ -7,7 +7,7 @@ import java.util.stream.Collectors
 class RssChannelListMapper {
         fun mapToData(list: List<RssChannel>): List<RssChannelData> {
             return list.stream()
-                .map { RssChannelData(it.id, it.address) }
+                .map { RssChannelData(it.id.toInt(), it.address) }
                 .collect(Collectors.toList())
                 .requireNoNulls()
         }

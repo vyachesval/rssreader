@@ -67,6 +67,6 @@ class AddRssChannelDialogFragment : DialogFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        viewModel.dispose()
+        viewModel.onDestroy()
     }
 }

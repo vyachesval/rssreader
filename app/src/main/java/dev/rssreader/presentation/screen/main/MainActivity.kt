@@ -5,6 +5,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
+
 import androidx.lifecycle.ViewModelProvider
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -15,16 +17,19 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainActivityViewModel
 
+    @BindView(R.id.toolbar)
+    lateinit var toolbar: Toolbar
+
     @BindView(R.id.fab)
     lateinit var fabView: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
-        ButterKnife.bind(this)
-
         viewModel = ViewModelProvider.NewInstanceFactory().create(MainActivityViewModel::class.java)
+
+        setContentView(R.layout.activity_main)
+        ButterKnife.bind(this)
+        setSupportActionBar(toolbar)
 
         fabView.setOnClickListener {
             val addChannelDialog = AddRssChannelDialogFragment()

@@ -11,7 +11,7 @@ import javax.inject.Inject
 class LocalDataSource @Inject constructor(context: Context) {
     val db: AppDatabase = Room.databaseBuilder(
         context,
-        AppDatabase::class.java, "rssreader"
+        AppDatabase::class.java, "rss_reader.db"
     ).build()
 
     fun insert(rsschannel: String) : Completable {
