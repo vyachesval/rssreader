@@ -9,7 +9,7 @@
         android:id="@+id/fragment_rsschannels_list"
         android:name="dev.rssreader.presentation.screen.list.channels.RssChannelsListFragment"
         android:label="@string/rsschannels_list_fragment_label"
-        tools:layout="@layout/fragment_rsschannels_list">
+        tools:layout="@layout/fragment_list">
 
         <action
             android:id="@+id/action_RssChannelsList_to_RssChannelNewsList"
@@ -19,7 +19,7 @@
         android:id="@+id/fragment_rsschannel_news_list"
         android:name="dev.rssreader.presentation.screen.list.news.RssChannelNewsListFragment"
         android:label="@string/rsschannel_news_list_fragment_label"
-        tools:layout="@layout/fragment_rsschannel_news_list">
+        tools:layout="@layout/fragment_list">
 
         <action
             android:id="@+id/action_RssChannelNewsList_to_RssChannelsList"

@@ -7,7 +7,8 @@ import dev.rssreader.entity.db.rsschannels.RssChannelDao
 
 @Database(
     entities = [RssChannel::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun rssChannelDao(): RssChannelDao

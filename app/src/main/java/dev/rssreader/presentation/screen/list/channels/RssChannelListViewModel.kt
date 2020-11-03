@@ -1,20 +1,15 @@
 package dev.rssreader.presentation.screen.list.channels
 
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import dev.rssreader.RssReaderApplication
 import dev.rssreader.domain.entity.RssChannelData
 import dev.rssreader.domain.usecase.DelRssChannel
 import dev.rssreader.domain.usecase.GetRssChannelNews
 import dev.rssreader.domain.usecase.GetRssChannelsList
+import dev.rssreader.presentation.screen.list.ListViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import toothpick.Toothpick
 import javax.inject.Inject
 
-class RssChannelListViewModel @Inject constructor() : ViewModel() {
+class RssChannelListViewModel @Inject constructor() : ListViewModel<RssChannelData>() {
 
     @Inject
     lateinit var getRssChannelsList: GetRssChannelsList
@@ -23,14 +18,7 @@ class RssChannelListViewModel @Inject constructor() : ViewModel() {
     @Inject
     lateinit var getRssChannelNews: GetRssChannelNews
 
-    val list: MutableLiveData<List<RssChannelData>> by lazy {
-        MutableLiveData<List<RssChannelData>>()
-    }
-
-    var compositeDisposable: CompositeDisposable = CompositeDisposable()
-
     init {
-        Toothpick.inject(this,  Toothpick.openScope(RssReaderApplication.instance))
         val disposable =
             getRssChannelsList.getRssChannelsList()
                 .subscribeOn(Schedulers.io())
@@ -38,17 +26,6 @@ class RssChannelListViewModel @Inject constructor() : ViewModel() {
                 .subscribe {
                     list.value = it
                 }
-        compositeDisposable.add(disposable)
-    }
-
-
-    fun onClick(rsschannel: RssChannelData) {
-        Log.d("iszx", "rsschannel opening " + rsschannel.address)
-        val disposable =
-            getRssChannelNews.getRssChannelNews(rsschannel.address)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe()
         compositeDisposable.add(disposable)
     }
 
@@ -61,7 +38,5 @@ class RssChannelListViewModel @Inject constructor() : ViewModel() {
         compositeDisposable.add(disposable)
     }
 
-    fun onDestroy() {
-        compositeDisposable.clear()
-    }
+
 }
