@@ -16,7 +16,6 @@ class RssChannelNewsListViewModel @Inject constructor() : ListViewModel<RssChann
     lateinit var getRssChannelNews: GetRssChannelNews
 
     fun getRssChannelNews(urn: String) {
-        Log.d("iszx", "getRssChannelNews " + urn)
         //val disposable =
             getRssChannelNews.getRssChannelNews(urn)
                 .subscribeOn(Schedulers.io())

@@ -1,7 +1,6 @@
 package dev.rssreader.entity.repositories.datasource
 
 import android.net.Uri
-import android.util.Log
 import dev.rssreader.entity.network.RequestService
 import dev.rssreader.entity.network.Rss
 import io.reactivex.Observable
@@ -23,7 +22,6 @@ class RemoteDataSource @Inject constructor() {
         val httpclientBuilder = OkHttpClient.Builder()
         httpclientBuilder.addInterceptor(object : Interceptor {
             override fun intercept(chain: Interceptor.Chain): Response {
-                Log.d("iszx", "intercept " + chain.request().url())
                 val response = chain.proceed(chain.request())
                 return response
             }

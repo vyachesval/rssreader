@@ -3,7 +3,6 @@ package dev.rssreader.presentation.list.news
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +23,6 @@ class RssChannelNewsListFragment : ListFragment() {
     private val adapter = RssChannelNewsListAdapter(
         object : ItemClickListener<RssChannelNewsData> {
             override fun onClick(position: Int, item: RssChannelNewsData) {
-                Log.d("iszx", "RssChannelNewsListFragment opening news link" + item.link)
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(item.link)))
             }
 
@@ -57,7 +55,6 @@ class RssChannelNewsListFragment : ListFragment() {
         viewModel.list.observe(viewLifecycleOwner, listObserver)
 
         val url = arguments?.getString("rsschannelUrl")
-        Log.d("iszx", "RssChannelNewsListFragment get " + url)
         url?.let {
             viewModel.getRssChannelNews(it)
         }
