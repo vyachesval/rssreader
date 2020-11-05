@@ -4,7 +4,7 @@ import android.util.Log
 import dev.rssreader.domain.entity.RssChannelData
 import dev.rssreader.domain.repositories.RssChannelsRepository
 import dev.rssreader.entity.repositories.datasource.LocalDataSource
-import dev.rssreader.entity.repositories.datasource.RssChannelListMapper
+import dev.rssreader.entity.repositories.mapper.RssChannelListMapper
 import io.reactivex.Completable
 import io.reactivex.Observable
 import javax.inject.Inject

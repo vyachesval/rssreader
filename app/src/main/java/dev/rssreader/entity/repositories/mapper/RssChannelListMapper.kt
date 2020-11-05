@@ -1,4 +1,4 @@
-package dev.rssreader.entity.repositories.datasource
+package dev.rssreader.entity.repositories.mapper
 
 import dev.rssreader.domain.entity.RssChannelData
 import dev.rssreader.entity.db.rsschannels.RssChannel
