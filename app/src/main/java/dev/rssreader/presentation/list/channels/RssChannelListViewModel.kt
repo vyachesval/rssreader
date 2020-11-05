@@ -1,10 +1,10 @@
-package dev.rssreader.presentation.screen.list.channels
+package dev.rssreader.presentation.list.channels
 
 import dev.rssreader.domain.entity.RssChannelData
 import dev.rssreader.domain.usecase.DelRssChannel
 import dev.rssreader.domain.usecase.GetRssChannelNews
 import dev.rssreader.domain.usecase.GetRssChannelsList
-import dev.rssreader.presentation.screen.list.ListViewModel
+import dev.rssreader.presentation.list.ListViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject

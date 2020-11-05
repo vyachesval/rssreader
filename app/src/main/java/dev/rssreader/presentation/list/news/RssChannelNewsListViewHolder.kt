@@ -1,4 +1,4 @@
-package dev.rssreader.presentation.screen.list.news
+package dev.rssreader.presentation.list.news
 
 import android.view.View
 import android.widget.TextView

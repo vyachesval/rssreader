@@ -1,4 +1,4 @@
-package dev.rssreader.presentation.screen.list.channels
+package dev.rssreader.presentation.list.channels
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -14,10 +14,10 @@ import butterknife.ButterKnife
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dev.rssreader.R
 import dev.rssreader.domain.entity.RssChannelData
-import dev.rssreader.presentation.screen.addchannel.AddRssChannelDialogFragment
-import dev.rssreader.presentation.screen.list.ItemClickListener
-import dev.rssreader.presentation.screen.list.ListFragment
-
+import dev.rssreader.presentation.dialog.addchannel.AddRssChannelDialogFragment
+import dev.rssreader.presentation.dialog.delchannel.DelRssChannelDialogFragment
+import dev.rssreader.presentation.list.ItemClickListener
+import dev.rssreader.presentation.list.ListFragment
 
 class RssChannelsListFragment : ListFragment() {
 
@@ -36,7 +36,14 @@ class RssChannelsListFragment : ListFragment() {
             }
 
             override fun onLongClick(position: Int, item: RssChannelData): Boolean {
-                showConfirmDialog(item)
+                activity?.let {
+                    val args = Bundle()
+                    args.putSerializable("rsschannelitem", item)
+                    val delRssChannelDialog = DelRssChannelDialogFragment()
+                    delRssChannelDialog.arguments = args
+                    val manager = it.supportFragmentManager
+                    delRssChannelDialog.show(manager, "DelRssChannel")
+                } ?: throw IllegalStateException("Activity cannot be null")
                 return true
             }
         })
@@ -71,17 +78,5 @@ class RssChannelsListFragment : ListFragment() {
         }
 
         viewModel.list.observe(viewLifecycleOwner, listObserver)
-    }
-
-    private fun showConfirmDialog(item: RssChannelData) {
-        val builder = AlertDialog.Builder(context)
-        builder.setMessage(R.string.del_rsschannel_title)
-            .setPositiveButton(R.string.del) { _, _ ->
-                viewModel.onLongClick(item)
-            }
-            .setNegativeButton(R.string.cancel) { dialog, _ ->
-                dialog.dismiss()
-            }
-        builder.create().show()
     }
 }

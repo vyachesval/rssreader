@@ -1,6 +1,8 @@
 package dev.rssreader.domain.entity
 
-data class RssChannelData(
+import java.io.Serializable
+
+data class RssChannelData (
     val id: Int,
     val address: String
-)
+) : Serializable

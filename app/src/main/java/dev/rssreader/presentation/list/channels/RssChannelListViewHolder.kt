@@ -1,4 +1,4 @@
-package dev.rssreader.presentation.screen.list.channels
+package dev.rssreader.presentation.list.channels
 
 import android.view.View
 import android.widget.TextView

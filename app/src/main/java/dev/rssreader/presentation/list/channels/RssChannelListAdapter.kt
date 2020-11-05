@@ -1,11 +1,11 @@
-package dev.rssreader.presentation.screen.list.channels
+package dev.rssreader.presentation.list.channels
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import dev.rssreader.R
 import dev.rssreader.domain.entity.RssChannelData
-import dev.rssreader.presentation.screen.list.ItemClickListener
-import dev.rssreader.presentation.screen.list.ListDataAdapter
+import dev.rssreader.presentation.list.ItemClickListener
+import dev.rssreader.presentation.list.ListDataAdapter
 
 class RssChannelListAdapter constructor(listener: ItemClickListener<RssChannelData>)
     : ListDataAdapter<RssChannelData, RssChannelListViewHolder>(listener) {

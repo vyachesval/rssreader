@@ -1,4 +1,4 @@
-package dev.rssreader.presentation.screen.addchannel
+package dev.rssreader.presentation.dialog.addchannel
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -46,8 +46,6 @@ class AddRssChannelDialogFragment : DialogFragment() {
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
-
-
     override fun onStart() {
         super.onStart()
         if(dialog is AlertDialog) {
@@ -63,10 +61,5 @@ class AddRssChannelDialogFragment : DialogFragment() {
                 }
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        viewModel.onDestroy()
     }
 }

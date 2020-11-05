@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_rsschannels_list"
-        android:name="dev.rssreader.presentation.screen.list.channels.RssChannelsListFragment"
+        android:name="dev.rssreader.presentation.list.channels.RssChannelsListFragment"
         android:label="@string/rsschannels_list_fragment_label"
         tools:layout="@layout/fragment_list">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_rsschannel_news_list"
-        android:name="dev.rssreader.presentation.screen.list.news.RssChannelNewsListFragment"
+        android:name="dev.rssreader.presentation.list.news.RssChannelNewsListFragment"
         android:label="@string/rsschannel_news_list_fragment_label"
         tools:layout="@layout/fragment_list">
 

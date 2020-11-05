@@ -1,4 +1,4 @@
-package dev.rssreader.presentation.screen.addchannel
+package dev.rssreader.presentation.dialog.addchannel
 
 import androidx.lifecycle.ViewModel
 import dev.rssreader.domain.usecase.AddRssChannel
@@ -20,7 +20,8 @@ class AddRssChannelViewModel @Inject constructor(private val addRssChannel: AddR
         compositeDisposable.add(disposable)
     }
 
-    fun onDestroy() {
+    override fun onCleared() {
+        super.onCleared()
         compositeDisposable.clear()
     }
 

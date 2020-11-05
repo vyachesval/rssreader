@@ -1,4 +1,4 @@
-package dev.rssreader.presentation.screen.list.news
+package dev.rssreader.presentation.list.news
 
 import android.content.Intent
 import android.net.Uri
@@ -12,9 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
 import dev.rssreader.R
 import dev.rssreader.domain.entity.RssChannelNewsData
-import dev.rssreader.presentation.screen.list.ItemClickListener
-import dev.rssreader.presentation.screen.list.ListFragment
-import dev.rssreader.presentation.screen.webview.WebViewActivity
+import dev.rssreader.presentation.list.ItemClickListener
+import dev.rssreader.presentation.list.ListFragment
 import kotlinx.android.synthetic.main.add_channel_button.view.*
 
 

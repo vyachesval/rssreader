@@ -1,9 +1,9 @@
-package dev.rssreader.presentation.screen.list.news
+package dev.rssreader.presentation.list.news
 
 import android.util.Log
 import dev.rssreader.domain.entity.RssChannelNewsData
 import dev.rssreader.domain.usecase.GetRssChannelNews
-import dev.rssreader.presentation.screen.list.ListViewModel
+import dev.rssreader.presentation.list.ListViewModel
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

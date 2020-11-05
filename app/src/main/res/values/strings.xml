@@ -17,7 +17,8 @@
     <string name="enter_address">Введите адрес:</string>
     <string name="enter_address_hint">rss канал</string>
     <string name="enter_address_error">Ошибка ввода адреса</string>
-    <string name="del_rsschannel_title">Удаление RSS канала</string>
+    <string name="del_rsschannel_title">Удалить RSS канал</string>
+    <string name="del_rsschannel_hint">Удалить RSS канал %1$s ?</string>
     <string name="del">Удалить</string>
     <string name="cancel">Отмена</string>
 </resources>

@@ -1,4 +1,4 @@
-package dev.rssreader.presentation.screen.list
+package dev.rssreader.presentation.list
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
