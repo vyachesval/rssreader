@@ -13,10 +13,6 @@ class RssChannelListViewModel @Inject constructor() : ListViewModel<RssChannelDa
 
     @Inject
     lateinit var getRssChannelsList: GetRssChannelsList
-    @Inject
-    lateinit var delRssChannelsList: DelRssChannel
-    @Inject
-    lateinit var getRssChannelNews: GetRssChannelNews
 
     init {
         val disposable =
@@ -28,15 +24,4 @@ class RssChannelListViewModel @Inject constructor() : ListViewModel<RssChannelDa
                 }
         compositeDisposable.add(disposable)
     }
-
-    fun onLongClick(rsschannel: RssChannelData) {
-        val disposable =
-            delRssChannelsList.delRssChannel(rsschannel)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe()
-        compositeDisposable.add(disposable)
-    }
-
-
 }

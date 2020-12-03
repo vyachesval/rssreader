@@ -9,10 +9,10 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class RssChannelsRepositoryImpl @Inject constructor(dataSource: LocalDataSource) : RssChannelsRepository {
+class RssChannelsRepositoryImpl @Inject constructor( val localDataSource: LocalDataSource) : RssChannelsRepository {
+
     private val mTAG = this::class.java.simpleName
 
-    val localDataSource: LocalDataSource = dataSource
     val mapper: RssChannelListMapper = RssChannelListMapper()
 
     override fun addRssChannel(rsschannel: String) : Completable {
@@ -27,5 +27,15 @@ class RssChannelsRepositoryImpl @Inject constructor(dataSource: LocalDataSource)
     override fun getRssChannelsList(): Observable<List<RssChannelData>> {
         return localDataSource.rssChannelList()
             .map(mapper::mapToData)
+    }
+
+    override fun addRssChannelsList(list: Array<String>): Completable {
+        return Observable.fromArray(list)
+            .map(mapper::mapToEntity)
+            .flatMapCompletable { localDataSource.insertAll(it)}
+    }
+
+    override fun isDataSourceCreated(): Boolean {
+        return localDataSource.isCreated
     }
 }

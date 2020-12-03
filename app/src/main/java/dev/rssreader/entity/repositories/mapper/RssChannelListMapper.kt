@@ -11,4 +11,11 @@ class RssChannelListMapper {
                 .collect(Collectors.toList())
                 .requireNoNulls()
         }
+
+        fun mapToEntity(list: Array<String>): List<RssChannel> {
+            return list.toList().stream()
+                .map { RssChannel(0, it) }
+                .collect(Collectors.toList())
+                .requireNoNulls()
+        }
 }

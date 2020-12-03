@@ -11,18 +11,24 @@ import androidx.lifecycle.ViewModelProvider
 import butterknife.BindView
 import butterknife.ButterKnife
 import dev.rssreader.R
+import dev.rssreader.RssReaderApplication
+import dev.rssreader.di.ViewModelFactory
+import toothpick.Toothpick
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainActivityViewModel
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
     @BindView(R.id.toolbar)
     lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider.NewInstanceFactory().create(MainActivityViewModel::class.java)
-
+        Toothpick.inject(this, Toothpick.openScope(RssReaderApplication.instance))
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
         setSupportActionBar(toolbar)
@@ -46,5 +52,10 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.initDefaultList()
     }
 }

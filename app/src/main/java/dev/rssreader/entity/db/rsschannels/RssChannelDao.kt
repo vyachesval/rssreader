@@ -19,6 +19,9 @@ abstract class RssChannelDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     abstract fun insert(channel: RssChannel): Completable
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    abstract fun insertAll(channels: List<RssChannel>): Completable
+
     @Update
     abstract fun update(channel: RssChannel) : Completable
 
