@@ -2,21 +2,23 @@ package dev.rssreader.presentation.screen.main
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-
 import androidx.lifecycle.ViewModelProvider
 import butterknife.BindView
 import butterknife.ButterKnife
 import dev.rssreader.R
 import dev.rssreader.RssReaderApplication
 import dev.rssreader.di.ViewModelFactory
+import dev.rssreader.entity.network.InternetConnectionListener
 import toothpick.Toothpick
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), InternetConnectionListener {
 
     private lateinit var viewModel: MainActivityViewModel
     @Inject
@@ -57,5 +59,20 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         viewModel.initDefaultList()
+        (application as RssReaderApplication).internetConnectionListener = this
+    }
+
+    override fun onInternetUnavailable() {
+        runOnUiThread(object: Runnable {
+            override fun run() {
+                val toast = Toast.makeText(
+                    applicationContext,
+                    R.string.network_error,
+                    Toast.LENGTH_SHORT
+                )
+                toast.setGravity(Gravity.CENTER,0,0)
+                toast.show()
+            }
+        })
     }
 }

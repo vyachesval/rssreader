@@ -21,6 +21,7 @@
     <string name="del_rsschannel_hint">Удалить RSS канал %1$s ?</string>
     <string name="del">Удалить</string>
     <string name="cancel">Отмена</string>
+    <string name="network_error">Ошибка подключения к сети</string>
 
     <string-array name="defaultChannels">
         <item>https://www.yaplakal.com/news.xml</item>
