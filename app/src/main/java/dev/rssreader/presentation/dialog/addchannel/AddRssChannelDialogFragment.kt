@@ -7,22 +7,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.widget.EditText
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import butterknife.BindView
 import butterknife.ButterKnife
+import dagger.hilt.android.AndroidEntryPoint
 import dev.rssreader.R
-import dev.rssreader.RssReaderApplication
-import dev.rssreader.di.ViewModelFactory
 import dev.rssreader.domain.usecase.CheckRssChannelAddressString
-import toothpick.Toothpick
-import javax.inject.Inject
 
+@AndroidEntryPoint
 class AddRssChannelDialogFragment : DialogFragment() {
 
     private val mTAG = this::class.java.simpleName
-    private lateinit var viewModel: AddRssChannelViewModel
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel: AddRssChannelViewModel by viewModels()
 
     @BindView(R.id.input_rsschannel)
     lateinit var inputRsschannelView: EditText
@@ -30,12 +26,9 @@ class AddRssChannelDialogFragment : DialogFragment() {
     @Throws(IllegalStateException::class)
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
-        Toothpick.inject(this, Toothpick.openScope(RssReaderApplication.instance))
         val addRssChannelView =
             LayoutInflater.from(context).inflate(R.layout.fragment_dialog_add_rsschannel, null)
         ButterKnife.bind(this, addRssChannelView)
-        viewModel =
-            ViewModelProvider(this, viewModelFactory).get(AddRssChannelViewModel::class.java)
         return activity?.let {
             val builder = AlertDialog.Builder(it)
                 .setTitle(R.string.add_rsschannel_title)

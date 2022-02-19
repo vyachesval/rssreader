@@ -1,7 +1,10 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
 
 android {
     compileSdkVersion 30
@@ -51,10 +54,6 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:2.2.9"
     implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
 
-    implementation 'com.github.stephanenicolas.toothpick:toothpick-runtime:3.1.0'
-    implementation 'com.github.stephanenicolas.toothpick:smoothie-androidx:3.1.0'
-    kapt 'com.github.stephanenicolas.toothpick:toothpick-compiler:3.1.0'
-
     implementation "com.jakewharton:butterknife:10.2.3"
     kapt "com.jakewharton:butterknife-compiler:10.2.3"
 
@@ -70,4 +69,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation 'com.squareup.retrofit2:converter-simplexml:2.9.0'
     implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
+
+    implementation "com.google.dagger:hilt-android:2.38.1"
+    kapt "com.google.dagger:hilt-compiler:2.38.1"
 }

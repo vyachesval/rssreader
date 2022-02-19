@@ -6,19 +6,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
+import dagger.hilt.android.AndroidEntryPoint
 import dev.rssreader.R
 import dev.rssreader.domain.entity.RssChannelNewsData
 import dev.rssreader.presentation.list.ItemClickListener
 import dev.rssreader.presentation.list.ListFragment
 import kotlinx.android.synthetic.main.add_channel_button.view.*
 
-
+@AndroidEntryPoint
 class RssChannelNewsListFragment : ListFragment() {
 
-    private lateinit var viewModel: RssChannelNewsListViewModel
+    private val viewModel: RssChannelNewsListViewModel by viewModels()
 
     private val adapter = RssChannelNewsListAdapter(
         object : ItemClickListener<RssChannelNewsData> {
@@ -35,7 +37,6 @@ class RssChannelNewsListFragment : ListFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = provideViewModel(RssChannelNewsListViewModel::class.java)
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 

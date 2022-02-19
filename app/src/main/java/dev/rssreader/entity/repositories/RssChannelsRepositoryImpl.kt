@@ -9,7 +9,7 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class RssChannelsRepositoryImpl @Inject constructor( val localDataSource: LocalDataSource) : RssChannelsRepository {
+class RssChannelsRepositoryImpl @Inject constructor(val localDataSource: LocalDataSource) : RssChannelsRepository {
 
     private val mTAG = this::class.java.simpleName
 

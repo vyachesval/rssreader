@@ -4,13 +4,14 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dev.rssreader.entity.db.AppDatabase
 import dev.rssreader.entity.db.rsschannels.RssChannel
 import io.reactivex.Completable
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class LocalDataSource @Inject constructor(context: Context) {
+class LocalDataSource @Inject constructor(@ApplicationContext context: Context) {
 
     var isCreated = false
     val db: AppDatabase = Room.databaseBuilder(

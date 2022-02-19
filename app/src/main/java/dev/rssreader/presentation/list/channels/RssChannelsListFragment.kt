@@ -1,17 +1,18 @@
 package dev.rssreader.presentation.list.channels
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import dagger.hilt.android.AndroidEntryPoint
 import dev.rssreader.R
 import dev.rssreader.domain.entity.RssChannelData
 import dev.rssreader.presentation.dialog.addchannel.AddRssChannelDialogFragment
@@ -19,12 +20,13 @@ import dev.rssreader.presentation.dialog.delchannel.DelRssChannelDialogFragment
 import dev.rssreader.presentation.list.ItemClickListener
 import dev.rssreader.presentation.list.ListFragment
 
+@AndroidEntryPoint
 class RssChannelsListFragment : ListFragment() {
 
     @BindView(R.id.fab)
     lateinit var fabView: FloatingActionButton
 
-    private lateinit var viewModel: RssChannelListViewModel
+    private val viewModel: RssChannelListViewModel by viewModels()
 
     private val adapter = RssChannelListAdapter(
         object : ItemClickListener<RssChannelData> {
@@ -53,7 +55,6 @@ class RssChannelsListFragment : ListFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        viewModel = provideViewModel(RssChannelListViewModel::class.java)
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 

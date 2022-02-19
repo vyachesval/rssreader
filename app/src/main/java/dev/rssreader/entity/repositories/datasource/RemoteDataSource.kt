@@ -5,7 +5,8 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Build
-import dev.rssreader.RssReaderApplication
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dev.rssreader.entity.network.InternetConnectionListener
 import dev.rssreader.entity.network.NetworkConnectionInterceptor
 import dev.rssreader.entity.network.RequestService
 import dev.rssreader.entity.network.Rss
@@ -16,7 +17,10 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import javax.inject.Inject
 
-class RemoteDataSource @Inject constructor(val context: Context) {
+class RemoteDataSource @Inject constructor(
+    @ApplicationContext val context: Context,
+    private val internetConnectionListener: InternetConnectionListener
+) {
 
     fun getRssChannelNews(rsschannelUrl: String): Observable<Rss> {
 
@@ -26,7 +30,8 @@ class RemoteDataSource @Inject constructor(val context: Context) {
         val httpclientBuilder = OkHttpClient.Builder()
         httpclientBuilder.addInterceptor(object : NetworkConnectionInterceptor() {
             override fun isInternetAvailable(): Boolean {
-                val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+                val connectivityManager =
+                    context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     val capabilities: NetworkCapabilities? =
                         connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork())
@@ -40,7 +45,8 @@ class RemoteDataSource @Inject constructor(val context: Context) {
             }
 
             override fun onInternetUnavailable() {
-                (context as RssReaderApplication).internetConnectionListener?.onInternetUnavailable()
+                //(context as RssReaderApplication).internetConnectionListener?.onInternetUnavailable()
+                internetConnectionListener.subject.onNext(Unit)
             }
         })
 
@@ -51,7 +57,7 @@ class RemoteDataSource @Inject constructor(val context: Context) {
             .addConverterFactory(SimpleXmlConverterFactory.create())
             .build()
 
-        val requestService  = retrofit.create(RequestService::class.java)
+        val requestService = retrofit.create(RequestService::class.java)
 
         return requestService.getRssChannelNews(rsschannelUrl)
 

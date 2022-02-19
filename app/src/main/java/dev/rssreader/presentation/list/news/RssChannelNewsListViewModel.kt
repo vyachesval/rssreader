@@ -1,6 +1,7 @@
 package dev.rssreader.presentation.list.news
 
 import android.util.Log
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.rssreader.domain.entity.RssChannelNewsData
 import dev.rssreader.domain.usecase.GetRssChannelNews
 import dev.rssreader.presentation.list.ListViewModel
@@ -10,10 +11,9 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class RssChannelNewsListViewModel @Inject constructor() : ListViewModel<RssChannelNewsData>() {
+@HiltViewModel
+class RssChannelNewsListViewModel @Inject constructor(private val getRssChannelNews: GetRssChannelNews) : ListViewModel<RssChannelNewsData>() {
 
-    @Inject
-    lateinit var getRssChannelNews: GetRssChannelNews
 
     fun getRssChannelNews(urn: String) {
         //val disposable =

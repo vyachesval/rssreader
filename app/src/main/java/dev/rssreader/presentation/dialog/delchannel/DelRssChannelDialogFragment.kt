@@ -6,33 +6,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import butterknife.BindView
 import butterknife.ButterKnife
+import dagger.hilt.android.AndroidEntryPoint
 import dev.rssreader.R
-import dev.rssreader.RssReaderApplication
-import dev.rssreader.di.ViewModelFactory
 import dev.rssreader.domain.entity.RssChannelData
-import toothpick.Toothpick
-import javax.inject.Inject
 
+@AndroidEntryPoint
 class DelRssChannelDialogFragment : DialogFragment() {
 
-    private lateinit var viewModel: DelRssChannelViewModel
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel: DelRssChannelViewModel by viewModels()
 
     @BindView(R.id.del_rsschannel_text_view)
     lateinit var testView: TextView
 
     @Throws(IllegalStateException::class)
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        Toothpick.inject(this, Toothpick.openScope(RssReaderApplication.instance))
         val delRssChannelView =
             LayoutInflater.from(context).inflate(R.layout.fragment_dialog_del_rss_channel, null)
         ButterKnife.bind(this, delRssChannelView)
-        viewModel =
-            ViewModelProvider(this, viewModelFactory).get(DelRssChannelViewModel::class.java)
 
         return activity?.let {
             val item = requireArguments().getSerializable("rsschannelitem") as RssChannelData
