@@ -1,3 +1,4 @@
 include ':domain'
+include ':entity'
 include ':app'
 rootProject.name = "RSS Reader"
