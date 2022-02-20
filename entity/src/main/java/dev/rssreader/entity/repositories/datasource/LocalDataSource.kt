@@ -9,11 +9,12 @@ import dev.rssreader.entity.db.AppDatabase
 import dev.rssreader.entity.db.rsschannels.RssChannel
 import io.reactivex.Completable
 import io.reactivex.Observable
+import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(@ApplicationContext context: Context) {
 
-    var isCreated = false
+    var isCreated = BehaviorSubject.create<Boolean>()
     val db: AppDatabase = Room.databaseBuilder(
         context,
         AppDatabase::class.java, "rss_reader.db"
@@ -21,9 +22,10 @@ class LocalDataSource @Inject constructor(@ApplicationContext context: Context) 
         .addCallback(object : RoomDatabase.Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
-                isCreated = true
+                isCreated.onNext(true)
             }
         })
+        .fallbackToDestructiveMigration()
         .build()
 
     fun insert(rsschannel: String) : Completable {

@@ -10,6 +10,7 @@ import dev.rssreader.R
 import dev.rssreader.domain.usecase.AddRssChannelsList
 import dev.rssreader.domain.usecase.IsFirstStart
 import dev.rssreader.entity.network.InternetConnectionListener
+import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -29,14 +30,18 @@ class MainActivityViewModel @Inject constructor(
     }
 
     fun initDefaultList() {
-        if (isFirstStart.isFirstStart()) {
-            val disposable =
-                addRssChannelsList.addRssChannelsList(context.resources.getStringArray(R.array.defaultChannels))
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe()
-            compositeDisposable.add(disposable)
-        }
+        compositeDisposable.add(
+            isFirstStart.isFirstStart()
+                .switchMapCompletable {
+                    if(it) {
+                        addRssChannelsList.addRssChannelsList(context.resources.getStringArray(R.array.defaultChannels))
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                    } else {
+                        Completable.complete()
+                    }
+                }.subscribe()
+        )
         compositeDisposable.add(
             internetConnectionListener.subject
                 .observeOn(AndroidSchedulers.mainThread())

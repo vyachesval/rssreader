@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         viewModel.initDefaultList()
-        //(application as RssReaderApplication).internetConnectionListener = this
     }
 
     private fun onInternetUnavailable() {

@@ -35,7 +35,7 @@ class RssChannelsRepositoryImpl @Inject constructor(val localDataSource: LocalDa
             .flatMapCompletable { localDataSource.insertAll(it)}
     }
 
-    override fun isDataSourceCreated(): Boolean {
+    override fun isDataSourceCreated(): Observable<Boolean> {
         return localDataSource.isCreated
     }
 }

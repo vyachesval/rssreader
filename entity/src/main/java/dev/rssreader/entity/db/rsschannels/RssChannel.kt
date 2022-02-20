@@ -8,7 +8,8 @@ import androidx.room.PrimaryKey
 data class RssChannel (
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    val address: String
+    val address: String,
+    val icon: String
 ) {
-    constructor(address: String) : this(0, address)
+    constructor(address: String, icon: String = "") : this(0, icon, address)
 }
