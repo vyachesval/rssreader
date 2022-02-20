@@ -22,8 +22,11 @@ abstract class RssChannelDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     abstract fun insertAll(channels: List<RssChannel>): Completable
 
+    @Query("UPDATE rsschannel SET image = :image, title=:title WHERE address = :address")
+    abstract fun update(address: String, image: String, title: String) : Completable
+
     @Update
-    abstract fun update(channel: RssChannel) : Completable
+    abstract fun update(rsschannel: RssChannel) : Completable
 
     @Query("DELETE FROM rsschannel WHERE id = :rsschannel_id")
     abstract fun delete(rsschannel_id: Int) : Completable

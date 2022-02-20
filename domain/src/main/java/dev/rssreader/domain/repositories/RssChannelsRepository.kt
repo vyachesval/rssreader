@@ -10,5 +10,7 @@ interface RssChannelsRepository {
     fun getRssChannelsList() : Observable<List<RssChannelData>>
     fun addRssChannelsList(list: Array<String>) : Completable
 
+    fun observeRssChannelList(): Observable<RssChannelData>
+
     fun isDataSourceCreated(): Observable<Boolean>
 }

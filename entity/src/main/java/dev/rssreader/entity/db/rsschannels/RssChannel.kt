@@ -9,7 +9,8 @@ data class RssChannel (
     @PrimaryKey(autoGenerate = true)
     val id: Long,
     val address: String,
-    val icon: String
+    val image: String,
+    val title: String,
 ) {
-    constructor(address: String, icon: String = "") : this(0, icon, address)
+    constructor(address: String) : this(0, address, "", "")
 }

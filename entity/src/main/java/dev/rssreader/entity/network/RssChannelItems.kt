@@ -12,10 +12,25 @@ data class Rss (
 )
 
 @Root(name="channel", strict = false)
-data class Channel (
+data class Channel(
+    @field:Element(name="title")
+    @param:Element(name="title")
+    val title: String,
+
+    @field:Element(name="image", required = false)
+    @param:Element(name="image", required = false)
+    val image: Image? = null,
+
     @field:ElementList(inline=true)
     @param:ElementList(inline=true)
     val items: List<Item>
+)
+
+@Root(name="image", strict = false)
+data class Image (
+    @field:Element(name="url")
+    @param:Element(name="url")
+    val url: String
 )
 
 @Root(name="item", strict = false)

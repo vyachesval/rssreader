@@ -11,6 +11,7 @@ import dev.rssreader.entity.network.NetworkConnectionInterceptor
 import dev.rssreader.entity.network.RequestService
 import dev.rssreader.entity.network.Rss
 import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -21,6 +22,8 @@ class RemoteDataSource @Inject constructor(
     @ApplicationContext val context: Context,
     private val internetConnectionListener: InternetConnectionListener
 ) {
+
+    val subject = PublishSubject.create<Pair<String, Rss>>()
 
     fun getRssChannelNews(rsschannelUrl: String): Observable<Rss> {
 
@@ -45,7 +48,6 @@ class RemoteDataSource @Inject constructor(
             }
 
             override fun onInternetUnavailable() {
-                //(context as RssReaderApplication).internetConnectionListener?.onInternetUnavailable()
                 internetConnectionListener.subject.onNext(Unit)
             }
         })
@@ -60,6 +62,7 @@ class RemoteDataSource @Inject constructor(
         val requestService = retrofit.create(RequestService::class.java)
 
         return requestService.getRssChannelNews(rsschannelUrl)
+            .doOnNext { subject.onNext(Pair<String, Rss>(rsschannelUrl, it)) }
 
     }
 }

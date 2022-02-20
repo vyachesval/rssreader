@@ -3,22 +3,32 @@ package dev.rssreader.presentation.list.channels
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.rssreader.domain.entity.RssChannelData
 import dev.rssreader.domain.usecase.GetRssChannelsList
+import dev.rssreader.domain.usecase.ObserveRssChannelList
 import dev.rssreader.presentation.list.ListViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @HiltViewModel
-class RssChannelListViewModel @Inject constructor(getRssChannelsList: GetRssChannelsList) : ListViewModel<RssChannelData>() {
+class RssChannelListViewModel @Inject constructor(
+    getRssChannelsList: GetRssChannelsList,
+    observeRssChannelList: ObserveRssChannelList
+) : ListViewModel<RssChannelData>() {
 
     init {
-        val disposable =
+        compositeDisposable.add(
             getRssChannelsList.getRssChannelsList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     list.value = it
                 }
-        compositeDisposable.add(disposable)
+        )
+        compositeDisposable.add(
+            observeRssChannelList.observeRssChannelList()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
+        )
     }
 }

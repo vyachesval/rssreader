@@ -5,6 +5,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dev.rssreader.domain.entity.RssChannelData
 import dev.rssreader.entity.db.AppDatabase
 import dev.rssreader.entity.db.rsschannels.RssChannel
 import io.reactivex.Completable
@@ -43,6 +44,10 @@ class LocalDataSource @Inject constructor(@ApplicationContext context: Context) 
 
     fun delete(rsschannelId: Int): Completable {
         return db.rssChannelDao().delete(rsschannelId)
+    }
+
+    fun update(rsschannel: RssChannel): Completable {
+        return db.rssChannelDao().update(rsschannel.address, rsschannel.image, rsschannel.title)
     }
 
 }

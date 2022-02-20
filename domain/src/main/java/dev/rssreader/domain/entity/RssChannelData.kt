@@ -5,5 +5,6 @@ import java.io.Serializable
 data class RssChannelData (
     val id: Int,
     val address: String,
-    val icon: String
+    val image: String,
+    val title: String
 ) : Serializable
