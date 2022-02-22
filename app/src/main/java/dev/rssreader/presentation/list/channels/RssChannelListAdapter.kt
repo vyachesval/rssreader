@@ -25,7 +25,14 @@ class RssChannelListAdapter constructor(listener: ItemClickListener<RssChannelDa
         if(list[position].image.isNotEmpty()) {
             Picasso.get().load(list[position].image).into(holder.imageView)
         }
-        holder.itemView.setOnClickListener{ listener.onClick(position, list[position]) }
-        holder.itemView.setOnLongClickListener{ listener.onLongClick(position, list[position]) }
+        holder.itemView.setOnClickListener{
+            listener.onClick(position, list[position])
+            notifyItemInserted(position)
+        }
+        holder.itemView.setOnLongClickListener{
+            val ret = listener.onLongClick(position, list[position])
+            notifyItemRemoved(position)
+            ret
+        }
     }
 }
