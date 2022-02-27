@@ -27,12 +27,9 @@ class RssChannelListAdapter constructor(listener: ItemClickListener<RssChannelDa
         }
         holder.itemView.setOnClickListener{
             listener.onClick(position, list[position])
-            notifyItemInserted(position)
         }
         holder.itemView.setOnLongClickListener{
-            val ret = listener.onLongClick(position, list[position])
-            notifyItemRemoved(position)
-            ret
+            listener.onLongClick(position, list[position])
         }
     }
 }

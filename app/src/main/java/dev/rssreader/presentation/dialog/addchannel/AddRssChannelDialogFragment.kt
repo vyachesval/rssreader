@@ -30,7 +30,7 @@ class AddRssChannelDialogFragment : DialogFragment() {
             LayoutInflater.from(context).inflate(R.layout.fragment_dialog_add_rsschannel, null)
         ButterKnife.bind(this, addRssChannelView)
         return activity?.let {
-            val builder = AlertDialog.Builder(it)
+            val builder = AlertDialog.Builder(it, R.style.RssListDialog)
                 .setTitle(R.string.add_rsschannel_title)
                 .setIcon(R.drawable.ic_action_name)
                 .setPositiveButton(R.string.add, null)

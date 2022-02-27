@@ -30,7 +30,7 @@ class DelRssChannelDialogFragment : DialogFragment() {
         return activity?.let {
             val item = requireArguments().getSerializable("rsschannelitem") as RssChannelData
             testView.text = getString(R.string.del_rsschannel_hint, item.address)
-            val builder = AlertDialog.Builder(it)
+            val builder = AlertDialog.Builder(it, R.style.RssListDialog)
                 .setTitle( R.string.del_rsschannel_title)
                 .setIcon(R.drawable.ic_action_name)
                 .setPositiveButton(R.string.del) { _, _ ->
