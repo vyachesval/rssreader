@@ -10,12 +10,12 @@ import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import dev.rssreader.presentation.screen.main.MainActivity
+import dev.rssreader.rss.screen.main.MainActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import androidx.test.espresso.matcher.BoundedMatcher
-import dev.rssreader.presentation.list.channels.RssChannelListViewHolder
+import dev.rssreader.rss.list.channels.RssChannelListViewHolder
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.not
