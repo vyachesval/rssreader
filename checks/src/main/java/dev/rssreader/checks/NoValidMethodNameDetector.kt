@@ -35,13 +35,13 @@ class NoValidMethodNameDetector : Detector(), UastScanner {
         return object : UElementHandler() {
 
             override fun visitMethod(node: UMethod) {
-                if(node.name.length > MAX_NAME_LENGTH) {
+                if(!node.name.contains('$') && node.name.length > MAX_NAME_LENGTH) {
                     context.report(
                         ISSUE,
                         node,
                         context.getLocation(node),
-                        "This method name is too long",
-                        createFix(node.name)
+                        "This method name \"${node.name}\" is too long"
+                            //createFix(node.name)
                     )
                 }
             }

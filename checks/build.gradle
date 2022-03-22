@@ -11,7 +11,7 @@ java {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.32"
 
-    def lintVersion = "30.1.2"
+    def lintVersion = "27.2.2"
     compileOnly  "com.android.tools.lint:lint-api:$lintVersion"
     compileOnly  "com.android.tools.lint:lint-checks:$lintVersion"
 
