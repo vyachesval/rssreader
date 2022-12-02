@@ -6,7 +6,8 @@
         <activity
             android:name=".screen.main.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -14,7 +15,8 @@
         </activity>
         <activity
             android:name=".screen.webview.WebViewActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />

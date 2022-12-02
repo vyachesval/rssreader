@@ -4,12 +4,12 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.32"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.10"
 
     def lintVersion = "27.2.2"
     compileOnly  "com.android.tools.lint:lint-api:$lintVersion"

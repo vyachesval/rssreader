@@ -20,4 +20,4 @@ Room
 RxJava  
 Clean Architecture в связке с MVVM  
 DI Hilt
-
+Espresso
